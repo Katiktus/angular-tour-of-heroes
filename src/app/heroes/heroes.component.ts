@@ -4,9 +4,8 @@ import { Hero } from "../_models/hero";
 import { HeroService } from "../_services/hero.service";
 import { User } from "../_models/user";
 import { AuthenticationService } from "../_services/authentication.service";
-import { Role, RoleType } from "../_models/role";
+import { RoleType } from "../_models/role";
 import { InMemoryDataService } from '../_services/in-memory-data.service';
-import { Validators } from "@angular/forms";
 
 @Component({
   selector: "app-heroes",

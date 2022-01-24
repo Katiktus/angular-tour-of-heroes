@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 
 import { AuthenticationService } from "./_services/authentication.service";
 import { User } from "./_models/user";
-import { Role, RoleType } from "./_models/role";
+import { RoleType } from "./_models/role";
 
 @Component({
   selector: "app-root",
