@@ -2,14 +2,13 @@
 
 <div *ngIf="isWriter">
 	<label>Hero name:
-    <input #heroName />
+    <input #heroName formControlName="heroName"/>
   </label>
-	<!-- (click) passes input value to add() and then clears the input -->
 	<button (click)="add(heroName.value); heroName.value=''" >
     add
   </button>
 </div>
-
+<div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
 <ul class="heroes">
 	<li *ngFor="let hero of heroes">
 

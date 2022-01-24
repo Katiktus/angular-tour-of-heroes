@@ -5,6 +5,9 @@ import { HeroService } from "../_services/hero.service";
 import { User } from "../_models/user";
 import { AuthenticationService } from "../_services/authentication.service";
 import { Role, RoleType } from "../_models/role";
+import { InMemoryDataService } from '../_services/in-memory-data.service';
+import { Validators } from "@angular/forms";
+
 @Component({
   selector: "app-heroes",
   templateUrl: "./heroes.component.html",
@@ -13,9 +16,11 @@ import { Role, RoleType } from "../_models/role";
 export class HeroesComponent implements OnInit {
   heroes!: Hero[];
   currentUser!: User;
+  error!: string;
   constructor(
     private heroService: HeroService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService, 
+    private inMemoryDataService: InMemoryDataService 
   ) {
     this.authenticationService.currentUser.subscribe(
       x => (this.currentUser = x)
@@ -37,12 +42,17 @@ export class HeroesComponent implements OnInit {
   }
   add(name: string): void {
     name = name.trim();
+    this.error = "";
     if (!name) {
       return;
     }
-    this.heroService.addHero({ name } as Hero).subscribe(hero => {
+    if(!this.inMemoryDataService.isInDb(this.heroes, name)){
+      this.heroService.addHero({ name } as Hero).subscribe(hero => {
       this.heroes.push(hero);
-    });
+      });
+    }else{
+      this.error = "Такой герой уже существует";
+    }
   }
 
   delete(hero: Hero): void {
