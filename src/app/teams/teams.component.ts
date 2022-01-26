@@ -30,7 +30,7 @@ export class TeamsComponent implements OnInit {
     this.getTeams();
   }
 
-  getHeroes(): void {
+  getTeams(): void {
     this.teamService.getTeams().subscribe(teams => (this.teams = teams));
   }
   get isWriter() {
