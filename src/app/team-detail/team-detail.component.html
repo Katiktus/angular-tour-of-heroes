@@ -1,0 +1,40 @@
+<div *ngIf="team">
+    <h2>{{team.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{team.id}}</div>
+    <div>
+      <label for="team-name">Team name: </label>
+      <input id="team-name" [(ngModel)]="team.name" placeholder="Team name"/>
+    </div>
+    <div *ngIf="isWriter">
+      <label>Hero name:
+        <input #heroName formControlName="heroName"/>
+      </label>
+      <button (click)="add(heroName.value); heroName.value=''" >
+        add
+      </button>
+    </div>
+    <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+
+    <li *ngFor="let hero of team.heroes">
+
+      <ng-container *ngIf="isWriter; then writeTemplate; else readTemplate">
+      </ng-container>
+  
+      <ng-template #writeTemplate>
+        <a routerLink="/detail/{{hero.id}}">
+          <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
+      </ng-template>
+      <ng-template #readTemplate>
+        <a routerLink="/detailro/{{hero.id}}">
+          <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
+      </ng-template>
+      <button class="delete" title="delete hero" *ngIf="isWriter"
+        (click)="delete(hero)">x</button>
+    </li>
+
+    <button (click)="goBack()">go back</button>
+    <button (click)="save()">save</button>
+  </div>
+  

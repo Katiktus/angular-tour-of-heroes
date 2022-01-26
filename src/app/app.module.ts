@@ -23,6 +23,9 @@ import { ErrorInterceptor } from "./_helpers/error.interceptor";
 import { AuthenticationService } from "./_services/authentication.service";
 import { UserService } from "./_services/user.service";
 import { fakeBackendProvider } from "./_helpers/fake-backend";
+import { TeamsComponent } from './teams/teams.component';
+import { TeamDetailComponent } from './team-detail/team-detail.component';
+import { TeamDetailRoComponent } from './team-detail-ro/team-detail-ro.component';
 
 @NgModule({
   imports: [
@@ -43,7 +46,10 @@ import { fakeBackendProvider } from "./_helpers/fake-backend";
     MessageComponent,
     HeroSearchComponent,
     LoginComponent,
-    HeroDetailRoComponent
+    HeroDetailRoComponent,
+    TeamsComponent,
+    TeamDetailComponent,
+    TeamDetailRoComponent
   ],
   bootstrap: [ AppComponent ],
   providers: [
